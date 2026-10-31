@@ -82,26 +82,8 @@ Panel {
     id: button
     anchors.fill: parent
     bar: root.bar
-    iconComponent: Component {
-      Item {
-        Item {
-          anchors.centerIn: parent
-          width: Style.space(14)
-          height: width
-          Rectangle { x: parent.width * 0.22; y: parent.height * 0.46; width: parent.width * 0.56; height: 2; rotation: 30; color: root.barForeground }
-          Rectangle { x: parent.width * 0.22; y: parent.height * 0.46; width: parent.width * 0.56; height: 2; rotation: -30; color: root.barForeground }
-          Repeater {
-            model: [{x: 0, y: 0.5}, {x: 1, y: 0}, {x: 1, y: 1}]
-            Rectangle {
-              required property var modelData
-              width: Math.max(4, parent.width * 0.32); height: width; radius: width / 2
-              x: modelData.x * (parent.width - width); y: modelData.y * (parent.height - height)
-              color: root.barForeground
-            }
-          }
-        }
-      }
-    }
+    text: "󰒍"
+    tooltipText: "EasyTier"
     dimmed: !root.available
     onPressed: function(buttonCode) {
       if (buttonCode === Qt.MiddleButton) root.refresh()
