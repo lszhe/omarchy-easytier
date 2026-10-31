@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "local.easytier",
+  "name": "EasyTier",
+  "version": "0.1.0",
+  "author": "Community",
+  "license": "MIT",
+  "description": "EasyTier status, peer IP copying and optional system-service control for the Omarchy bar.",
+  "kinds": ["bar-widget"],
+  "entryPoints": {"barWidget": "Panel.qml"},
+  "barWidget": {
+    "displayName": "EasyTier",
+    "description": "Show EasyTier status and control the configured service without running the GUI.",
+    "category": "Network",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {"refreshIntervalSec": 30, "serviceName": "easytier-omarchy.service"},
+    "schema": [
+      {"key": "refreshIntervalSec", "type": "integer", "label": "Refresh interval (seconds)", "min": 10, "max": 3600, "step": 10, "defaultValue": 30},
+      {"key": "serviceName", "type": "string", "label": "Systemd service name", "defaultValue": "easytier-omarchy.service"}
+    ]
+  }
+}
