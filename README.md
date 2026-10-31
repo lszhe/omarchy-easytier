@@ -31,3 +31,5 @@ omarchy plugin validate .
 ```
 
 The panel offers copy buttons for local and peer IP addresses. Copying strips any CIDR prefix from the address.
+
+The small monochrome EasyTier icon is a simplified adaptation of the upstream icon; see [`assets/NOTICE.md`](assets/NOTICE.md) for attribution and its separate license.

@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Effects
 import Quickshell
 import Quickshell.Io
 import qs.Commons
@@ -82,12 +83,39 @@ Panel {
     id: button
     anchors.fill: parent
     bar: root.bar
-    text: "󰒍"
+    iconComponent: Component {
+      Item {
+        EasyTierMark { anchors.centerIn: parent; size: Style.space(14); tint: root.barForeground }
+      }
+    }
     tooltipText: "EasyTier"
     dimmed: !root.available
     onPressed: function(buttonCode) {
       if (buttonCode === Qt.MiddleButton) root.refresh()
       else if (buttonCode === Qt.LeftButton) root.toggle()
+    }
+  }
+  component EasyTierMark: Item {
+    id: mark
+    property real size: 18
+    property color tint: root.foreground
+    width: size
+    height: size
+    Image {
+      id: markImage
+      anchors.fill: parent
+      source: Qt.resolvedUrl("assets/easytier-mark.svg")
+      sourceSize.width: Math.ceil(mark.size * 2)
+      sourceSize.height: Math.ceil(mark.size * 2)
+      fillMode: Image.PreserveAspectFit
+      smooth: true
+      visible: false
+    }
+    MultiEffect {
+      anchors.fill: markImage
+      source: markImage
+      colorization: 1
+      colorizationColor: mark.tint
     }
   }
   KeyboardPanel {
@@ -131,7 +159,7 @@ Panel {
             foreground: root.foreground
             fontFamily: root.fontFamily
             iconComponent: Component {
-              Text { text: "󰒍"; color: root.available ? root.foreground : root.dim; font.family: root.fontFamily; font.pixelSize: Style.font.display }
+              EasyTierMark { size: Style.font.display; tint: root.available ? root.foreground : root.dim }
             }
             trailingControl: Component {
               ToggleSwitch {
